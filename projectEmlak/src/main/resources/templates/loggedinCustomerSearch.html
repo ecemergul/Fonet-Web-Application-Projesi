@@ -86,6 +86,7 @@
       <th>Isıtma Türü</th>
       <th>Adres</th>
       <th>İletişim</th>
+      <th>İlan Resmi</th>
     </tr>
     </thead>
     <tbody>
@@ -100,6 +101,7 @@
       <td th:text="${result.heatingType}"></td>
       <td th:text="${result.adAddress}"></td>
       <td th:text="${result.customer != null ? result.customer.cellPhoneNumber : (result.estCompany != null ? result.estCompany.phone : 'Not Provided')}"></td>
+      <td><img th:src="@{houseEntity.jpg}" alt="House Entity Image" width="100"/></td>
       <!-- Add more spans for additional fields as needed -->
     </tr>
     </tbody>

@@ -33,6 +33,4 @@ public interface CustomerEstateAdDAO extends JpaRepository<CustomerEstateAd, Lon
     Optional<CustomerEstateAd> findByHeatingTypeIgnoreCase(String heatingType);
 
     Optional<CompanyEstateAd> findByAdAddressIgnoreCase(String adAddress);
-
-    //TODO: Delete de yap
 }

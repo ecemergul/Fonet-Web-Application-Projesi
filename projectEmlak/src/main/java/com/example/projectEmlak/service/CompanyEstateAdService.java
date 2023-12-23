@@ -73,9 +73,5 @@ public class CompanyEstateAdService {
         return companyEstateAd;
     }
 
-
-
-    //TODO: Delete metodu
-
 }
 

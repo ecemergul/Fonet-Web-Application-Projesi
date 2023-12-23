@@ -22,8 +22,6 @@ import java.util.List;
 //@RequestMapping("/auth")
 @Controller
 public class AuthenticationController {
-        //deleete de burda olabilir, GET yani ilanları alma başkasında mı olsa EstateAdController mesela
-    // bu controller da registration ı yapmayı sağlayan frontend modeli alınmalı
 
     private CustomerService customerService;
 
@@ -41,29 +39,6 @@ public class AuthenticationController {
         this.searchService = searchService;
     }
 
-    //ayrı bi path olsa register diyo bu path in altında frontend'de şirket mi seçildi bireysel mı seçildi diye bakan bi method olsa
-    // sonra bu method'un sonucuna göre aşağıdaki ya registerCustomer ya da registerEstateComp çalıştırılsa
-    //@PostMapping("/register")
-    //public void registerType(@RequestBody ......?) {    şirketse bi variable ı true yap mesela    }
-
-    /*@RequestMapping("/home")
-    public String getHomePage() {
-        return "home";
-    }*/
-
-    /*@RequestMapping("/estateAds")
-    public*/
-
-    /*@ModelAttribute("customer")
-    public CustomerRegistrationBody customerRegistrationBody() {
-        return new CustomerRegistrationBody();
-    }*/
-
-    /*@GetMapping("/register1")
-    public String showRegistrationPage(Model model) {
-        model.addAttribute("customer", new CustomerRegistrationBody());
-        return "registration";
-    }*/
 
     @GetMapping("/registerCustomerPage")
     public String getRegPage(@ModelAttribute("customer") CustomerRegistrationBody customerRegistrationBody) {
@@ -108,13 +83,7 @@ public class AuthenticationController {
         return "homeCompanyLoggedin";
     }
 
-    @GetMapping("/loggedinSearch")
-    public String showLoggedInSearchPage(Model model) {
-        model.addAttribute("Page Title", "loggedinCompany");
-        return "loggedinSearch";
-    }
-
-    @PostMapping("/registerCustomerPage")  //if true do this        eskisi: /register1/customer
+    @PostMapping("/registerCustomerPage")
     public String/*ResponseEntity*/ registerCustomer(@Valid /*@RequestBody*/@ModelAttribute("customer") CustomerRegistrationBody customerRegistrationBody, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/registration?failed";
@@ -131,7 +100,7 @@ public class AuthenticationController {
 
     }
 
-    @PostMapping("/registerCompanyPage") //else do this
+    @PostMapping("/registerCompanyPage")
     public String /*ResponseEntity*/ registerEstateCompany(@Valid /*@RequestBody*/@ModelAttribute("company") EstateCompRegistrationBody estateCompRegistrationBody, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/registration?failed";
@@ -218,7 +187,7 @@ public class AuthenticationController {
         return "searchEstateAds";
     }
 
-    @GetMapping("/loggedinCustomerSearch")  //sonra if ekle addAd'den sonra çalışıyosa o ve bu
+    @GetMapping("/loggedinCustomerSearch")
     public String getLoggedinCustomerSearchEstateAds(Model model, /*@RequestParam("keyword") String keyword*/@ModelAttribute SearchForm searchForm ) {
         String keyword = searchForm.getKeyword();
         List<Object> searchedResults = searchService.searchEntitiesByKeyword(keyword);
@@ -227,7 +196,7 @@ public class AuthenticationController {
         return "loggedinCustomerSearch";
     }
 
-    @GetMapping("/loggedinCompanySearch")  //sonra if ekle addAd'den sonra çalışıyosa o ve bu
+    @GetMapping("/loggedinCompanySearch")
     public String getLoggedinCompanySearchEstateAds(Model model, /*@RequestParam("keyword") String keyword*/@ModelAttribute SearchForm searchForm ) {
         String keyword = searchForm.getKeyword();
         List<Object> searchedResults = searchService.searchEntitiesByKeyword(keyword);
@@ -241,7 +210,7 @@ public class AuthenticationController {
     public String getCreateCustomerAdPage(@ModelAttribute("customerEstateAd") CustomerEstateAdRegistrationBody customerEstateAdRegistrationBody) {
         return "createCustomerEstateAdPage";
     }
-    @PostMapping("/createCustomerEstateAdPage")  //if true do this        eskisi: /register1/customer
+    @PostMapping("/createCustomerEstateAdPage")
     public String/*ResponseEntity*/ createCustomerEstateAd(@Valid /*@RequestBody*/@ModelAttribute("customerEstateAd") CustomerEstateAdRegistrationBody customerEstateAdRegistrationBody, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/registration?failed";
@@ -264,7 +233,7 @@ public class AuthenticationController {
     public String getCreateCompanyAdPage(@ModelAttribute("companyEstateAd") CompanyEstateAdRegistrationBody companyEstateAdRegistrationBody) {
         return "createCompanyEstateAdPage";
     }
-    @PostMapping("/createCompanyEstateAdPage")  //if true do this        eskisi: /register1/customer
+    @PostMapping("/createCompanyEstateAdPage")
     public String/*ResponseEntity*/ createCompanyEstateAd(@Valid /*@RequestBody*/@ModelAttribute("companyEstateAd") CompanyEstateAdRegistrationBody companyEstateAdRegistrationBody, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/registration?failed";
@@ -280,15 +249,5 @@ public class AuthenticationController {
         }
 
     }
-
-
-
-
-
-    //TODO: iki EstateAd olması lazım CustomerEstateAd ve CompanyEstateAd
-    //TODO: createCustomerEstateAd metodu yaz service'deki addEstateAd'i kullanan. Delete'ini de yap
-    //TODO: createCompanyEstateAd metodu yaz service'deki addEstateAd'i kullanan. Delete'ini de yap
-
-
 
 }

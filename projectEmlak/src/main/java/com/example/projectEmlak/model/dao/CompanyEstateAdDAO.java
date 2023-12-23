@@ -33,5 +33,4 @@ public interface CompanyEstateAdDAO extends JpaRepository<CompanyEstateAd, Long>
 
     Optional<CompanyEstateAd> findByAdAddressIgnoreCase(String adAddress);
 
-    //TODO: Delete de yap
 }
