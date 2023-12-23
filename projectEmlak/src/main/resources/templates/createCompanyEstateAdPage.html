@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlan Yarat</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" >
+</head>
+<body>
+
+<div class="container">
+    <h2>İlan Yarat</h2>
+
+    <div th:if="${message != null}" class="message">
+        [[${message}]]
+    </div>
+
+    <form
+
+            th:action="@{/createCompanyEstateAdPage}"
+            method="post"
+            role="form"
+            th:object="${companyEstateAd}"
+    >
+        <div class="input-group">
+            <label for="companyAgentUsername">Kullanıcı Adı</label>
+            <input th:field="*{companyAgentUsername}" type="text" id="companyAgentUsername" name="companyAgentUsername" required>
+        </div>
+        <div class="input-group">
+            <label for="estateType">Emlak Türü</label>
+            <input th:field="*{estateType}" type="text" id="estateType" name="estateType" required>
+        </div>
+        <div class="input-group">
+            <label for="sqrMeter">Metrekare</label>
+            <input th:field="*{sqrMeter}" type="text" id="sqrMeter" name="sqrMeter" required>
+        </div>
+
+        <div class="input-group">
+            <label for="roomNum">Oda Sayısı</label>
+            <input th:field="*{roomNum}" type="text" id="roomNum" name="roomNum" required>
+        </div>
+
+        <div class="input-group">
+            <label for="floorNum">Emlak Kaç Katlı</label>
+            <input th:field="*{floorNum}" type="text" id="floorNum" name="floorNum" required>
+        </div>
+
+        <div class="input-group">
+            <label for="aptFloor">Emlak Kaçıncı Katta</label>
+            <input th:field="*{aptFloor}" type="text" id="aptFloor" name="aptFloor" required>
+        </div>
+
+        <div class="input-group">
+            <label for="heatingType">Isıtma Türü</label>
+            <input th:field="*{heatingType}" type="text" id="heatingType" name="heatingType" required>
+        </div>
+
+        <div class="input-group">
+            <label for="adAddress">Adres</label>
+            <input th:field="*{adAddress}" type="text" id="adAddress" name="adAddress" required>
+        </div>
+        <button type="submit" class="btn" >İlan Ver</button>
+        <a th:href="@{/homeCompanyLoggedin}" class="back-link">Ana Sayfa'ya dön</a>
+        <!--<input type="reset" value="Reset" />-->
+        <!--<span>Zaten üyeliğiniz var mı? <a href="/" th:href="@{/loginPage}">Giriş
+                        yap</a></span>-->
+    </form>
+</div>
+</body>
+</html>

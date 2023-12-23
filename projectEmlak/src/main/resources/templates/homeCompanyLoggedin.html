@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            background-image: url('/houseBackground.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 10px;
+            text-align: left;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        .navbar-logo {
+            display: inline-block;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #0077A8;
+        }
+
+        .login-buttons {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            text-align: right;
+        }
+
+        .login-buttons a {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .content {
+            margin-top: 70px; /* Adjust this margin based on the navbar's height */
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <!-- Logo in the top left -->
+    <div class="navbar-logo">
+        <img src="houseLogo.png" alt="Logo" height="40">
+    </div>
+
+<!-- Search Bar
+    <div class="search-bar">
+        <form th:action="@{/searchEstateAds}" method="get">
+            <label for="search">İlan Ara</label>
+            <input type="text" id="search" name="keyword" required>
+            <button type="submit" class="btn btn-white">İlan Ara</button>
+     </form>
+    </div>-->
+    <div class="login-buttons">
+        <a th:href="@{/loggedinCompanySearch}" class="btn btn-blue">İlan Ara</a>
+        <a th:href="@{/createCompanyEstateAdPage}" class="btn btn-blue">İlan Ver</a>
+        <a th:href="@{/home}" class="btn btn-blue">Çıkış Yap</a>
+    </div>
+</div>
+<!-- Üye Ol Button
+<div class="login-button">
+    <a th:href="@{/home}" class="btn btn-blue">Çıkış Yap</a>
+</div>
+
+<div class="login-button">
+    <a th:href="@{/loggedinCompanySearch}" class="btn btn-blue">İlan Ara</a>
+</div>
+
+<div class="login-button">
+    <a th:href="@{/createCompanyEstateAdPage}" class="btn btn-blue">İlan Ver</a>
+</div>-->
+
+</body>
+</html>

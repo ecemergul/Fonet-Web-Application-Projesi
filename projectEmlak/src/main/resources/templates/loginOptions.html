@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            background-image: url('/path/to/your/home-picture.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 10px;
+            text-align: left;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+
+        .navbar-logo {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #0077A8;
+        }
+
+        .login-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+        }
+
+        .login-buttons a {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .content {
+            margin-top: 70px; /* Adjust this margin based on the navbar's height */
+            text-align: center;
+            color: #fff;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container h2 {
+            color: #00A5E3;
+        }
+
+        .form-container .login-options {
+            margin-top: 20px;
+        }
+
+        .form-container .login-options a {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #00A5E3;
+        }
+
+        .form-container .login-options a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+<!-- Link to another page with two options -->
+    <div class="form-container">
+        <h2>Giriş yapmak için birini seçin:</h2>
+        <a th:href="@{/loginCustomer}" class="btn btn-green">Bireysel Hesap</a>
+        <a th:href="@{/loginCompany}" class="btn btn-orange">Şirket Hesabı</a>
+        <span style="display: block; margin-top: 20px; color: black;"><a href="/" th:href="@{/home}">Ana Sayfa'ya dön</a></span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arama Sonuçları</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <style>
+        /* Additional styles for specific modifications */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .btn {
+            background-color: #fff;
+            color: #00A5E3;
+            border: 1px solid #00A5E3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Adjust as needed */
+        }
+
+        th, td {
+            border: 1px solid #00A5E3;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0077A8;
+            color: white;
+        }
+
+        .container {
+            background-color: white; /* Set the background color to white */
+            padding: 20px; /* Add padding to the container */
+            border-radius: 10px; /* Optional: Add border radius for a rounded appearance */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Optional: Add box shadow for a subtle effect */
+            width: 1100px;
+            overflow: auto; /* Ensure container expands to fit content */
+            display: inline-block; /* Automatically adjust width based on content (table) */
+            margin-left: 20px; /* Adjust as needed */
+            margin-top: 20px; /* Adjust as needed */
+        }
+
+        #header {
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<div id="header">
+    <!-- Search Bar -->
+    <form th:action="@{/loggedinCompanySearch}" method="get" class="input-group">
+        <label for="keyword">İlan Ara:</label>
+        <input type="text" id="keyword" name="keyword" required>
+        <button type="submit" class="btn">Ara</button>
+    </form>
+
+    <!-- üye ol choice sayfasına yönelt-->
+    <a th:href="@{/createCompanyEstateAdPage}" class="btn">İlan Ver</a>
+</div>
+
+<!-- Main content for the search results page -->
+<div class="container">
+    <h2>İlanlar</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>İlan Veren</th>
+            <th>Emlak Türü</th>
+            <th>Metrekare</th>
+            <th>Oda Sayısı</th>
+            <th>Kaç Katlı</th>
+            <th>Kaçıncı Katta</th>
+            <th>Isıtma Türü</th>
+            <th>Adres</th>
+            <th>İletişim</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="result : ${searchedResults}">
+            <!-- Display the relevant information about each search result -->
+            <td th:text="${result.customer != null ? result.customer.firstName : (result.estCompany != null ? result.estCompany.companyName : 'Not Provided')}"></td>
+            <td th:text="${result.estateType}"></td>
+            <td th:text="${result.sqrMeter}"></td>
+            <td th:text="${result.roomNum}"></td>
+            <td th:text="${result.floorNum}"></td>
+            <td th:text="${result.aptFloor}"></td>
+            <td th:text="${result.heatingType}"></td>
+            <td th:text="${result.adAddress}"></td>
+            <td th:text="${result.customer != null ? result.customer.cellPhoneNumber : (result.estCompany != null ? result.estCompany.phone : 'Not Provided')}"></td>
+            <!-- Add more spans for additional fields as needed -->
+        </tr>
+        </tbody>
+    </table>
+    <!-- Add a link to go back to the home page ??????????????? loggedin olmayan ana sayfaya dönüyo-->
+    <a th:href="@{/homeCompanyLoggedin}" class="back-link">Ana Sayfa'ya dön</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şirket Üyelik Sayfası</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" >
+</head>
+<body>
+
+<div class="container">
+    <h2>Üye Ol</h2>
+
+    <div th:if="${message != null}" class="message">
+        [[${message}]]
+    </div>
+
+    <form
+
+            th:action="@{/registerCompanyPage}"
+            method="post"
+            role="form"
+            th:object="${company}"
+    >
+        <div class="input-group">
+            <label for="companyName">Şirket İsmi</label>
+            <input th:field="*{companyName}" type="text" id="companyName" name="companyName" required>
+        </div>
+        <div class="input-group">
+            <label for="estateAgentFirstName">Yetkili İsmi</label>
+            <input th:field="*{estateAgentFirstName}" type="text" id="estateAgentFirstName" name="estateAgentFirstName" required>
+        </div>
+        <div class="input-group">
+            <label for="estateAgentLastName">Yetkili Soyismi</label>
+            <input th:field="*{estateAgentLastName}" type="text" id="estateAgentLastName" name="estateAgentLastName" required>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Yekili Email</label>
+            <input th:field="*{email}" type="text" id="email" name="email" required>
+        </div>
+
+        <div class="input-group">
+            <label for="agentUsername">Yetkili Kullanıcı Adı</label>
+            <input th:field="*{agentUsername}" type="text" id="agentUsername" name="agentUsername" required>
+        </div>
+
+        <div class="input-group">
+            <label for="agentPassword">Şifre</label>
+            <input th:field="*{agentPassword}" type="password" id="agentPassword" name="agentPassword" required>
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Şirket Telefonu</label>
+            <input th:field="*{phone}" type="text" id="phone" name="phone" required>
+        </div>
+
+        <div class="input-group">
+            <label for="fax">Fax</label>
+            <input th:field="*{fax}" type="text" id="fax" name="fax" required>
+        </div>
+
+        <div class="input-group">
+            <label for="compAddress">Şirket Adresi</label>
+            <input th:field="*{compAddress}" type="text" id="compAddress" name="compAddress" required>
+        </div>
+        <button type="submit" class="btn" >Üye Ol</button>
+        <!--<input type="reset" value="Reset" />-->
+        <span>Zaten üyeliğiniz var mı? <a href="/" th:href="@{/loginOptions}">Giriş
+                        yap</a></span>
+    </form>
+</div>
+</body>
+</html>
